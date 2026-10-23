@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Papa Tudo Lanches – Cardápio digital | Matupá - MT</title>
+<meta name="description" content="Cardápio digital da Papa Tudo Lanches, em Matupá - MT. Monte seu pedido e envie pelo WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1e120c;--card:#2c1b12;--line:#4a3022;--tx:#fff3dc;--mut:#c9ad90;--y:#ffc21a;--r:#e23b2a;--ok:#5ad17a}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font:16px/1.5 Nunito,system-ui,sans-serif;padding-bottom:90px}
+h1,h2,h3,.logo{font-family:"Bowlby One",Impact,sans-serif;font-weight:400;line-height:1.1}
+.wrap{max-width:1000px;margin:0 auto;padding:0 16px}
+header{position:sticky;top:0;z-index:20;background:#1e120cee;backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+.logo{color:var(--y);font-size:20px;text-decoration:none}
+.btn{display:inline-block;border:0;border-radius:999px;background:var(--r);color:#fff;font:800 16px Nunito,sans-serif;padding:13px 22px;cursor:pointer;text-decoration:none;text-align:center}
+.btn:active{transform:scale(.97)}
+.btn.y{background:var(--y);color:#2b1a12}.btn.ghost{background:transparent;border:2px solid var(--line);color:var(--tx)}.btn.sm{padding:8px 14px;font-size:14px}.btn.full{width:100%}
+:focus-visible{outline:3px solid var(--y);outline-offset:2px}
+.hero{padding:44px 0 36px;text-align:center;background:radial-gradient(circle at 50% 0,#5a2a14 0,transparent 70%)}
+.hero .em{font-size:84px;display:block;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px) rotate(-4deg)}}
+.hero h1{font-size:clamp(38px,11vw,72px);color:var(--y);text-shadow:3px 3px 0 var(--r);margin:8px 0 12px}
+.hero p{color:var(--mut);max-width:460px;margin:0 auto 22px}
+.pills{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:18px;font-size:14px;font-weight:700}
+.pills span{border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+.tools{position:sticky;top:56px;z-index:15;background:var(--bg);padding:12px 0 8px}
+#q{width:100%;padding:13px 16px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--tx);font:700 16px Nunito,sans-serif}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:10px 0 4px;scrollbar-width:none}
+.chip{flex:none;border:2px solid var(--line);background:none;color:var(--tx);border-radius:999px;padding:7px 14px;font:800 14px Nunito,sans-serif;cursor:pointer}
+.chip.on{background:var(--y);color:#2b1a12;border-color:var(--y)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;padding:12px 0 30px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:transform .15s}
+.card:hover{transform:translateY(-3px)}
+.ph{height:150px;display:grid;place-items:center;font-size:64px;background:linear-gradient(135deg,#6b2f17,#3a2014);background-size:cover;background-position:center}
+.cb{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.cb h3{font-size:17px}.cb p{color:var(--mut);font-size:14px;flex:1}
+.pr{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+.pr b{color:var(--y);font-size:19px}
+.empty{grid-column:1/-1;text-align:center;color:var(--mut);padding:30px 0}
+section.info{padding:30px 0;border-top:1px solid var(--line)}
+section.info h2{font-size:26px;margin-bottom:14px;color:var(--y)}
+.rev{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.rev div{background:var(--card);border-radius:14px;padding:14px;border:1px solid var(--line)}
+.big{font-family:"Bowlby One",sans-serif;font-size:40px;color:var(--y)}
+.muted{color:var(--mut)}
+footer{padding:26px 0;text-align:center;color:var(--mut);font-size:14px;border-top:1px solid var(--line)}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:linear-gradient(transparent,var(--bg) 40%)}
+.bar button{width:100%;max-width:600px;margin:0 auto;display:flex;justify-content:space-between;background:var(--r);color:#fff;border:0;border-radius:14px;padding:15px 18px;font:800 17px Nunito,sans-serif;cursor:pointer;box-shadow:0 6px 20px #0008}
+.ov{position:fixed;inset:0;z-index:40;background:#000b;display:flex;align-items:flex-end;justify-content:center}
+.ov[hidden]{display:none}
+.sheet{background:var(--bg);width:100%;max-width:560px;max-height:92vh;overflow:auto;border-radius:22px 22px 0 0;padding:20px 18px calc(20px + env(safe-area-inset-bottom,0px));animation:up .22s ease-out}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+.sheet h2{font-size:24px;margin-bottom:6px}
+.x{float:right;background:var(--card);border:0;color:var(--tx);width:36px;height:36px;border-radius:50%;font-size:20px;cursor:pointer}
+.opt{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.opt input{accent-color:var(--r);width:20px;height:20px;margin-right:8px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.qty{display:flex;align-items:center;gap:10px}.qty button{width:34px;height:34px;border-radius:50%;border:2px solid var(--line);background:none;color:var(--tx);font-size:19px;cursor:pointer}
+label{display:block;font-weight:800;margin:12px 0 4px}
+input,select,textarea{width:100%;padding:12px;border-radius:10px;border:2px solid var(--line);background:var(--card);color:var(--tx);font:700 16px Nunito,sans-serif}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.seg label{margin:0;border:2px solid var(--line);border-radius:10px;padding:10px;text-align:center;cursor:pointer}
+.seg input{display:none}
+.seg label:has(input:checked){border-color:var(--y);color:var(--y)}
+.tot{display:flex;justify-content:space-between;font-size:20px;font-weight:800;padding:14px 0}
+.err{color:#ff8a7a;font-weight:700;min-height:22px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="#topo" id="lg"></a><a class="btn sm y" href="#cardapio">Cardápio</a></div></header>
+<main id="topo">
+<section class="hero"><div class="wrap">
+  <span class="em" aria-hidden="true">🍔</span>
+  <h1 id="hn"></h1>
+  <p>Escolha seus lanches, monte o pedido e envie direto pelo WhatsApp. Retirada ou entrega em Matupá.</p>
+  <a class="btn y" href="#cardapio">🍔 Ver Cardápio</a>
+  <div class="pills"><span id="hr"></span><span>🛵 Entrega e retirada</span></div>
+</div></section>
+
+<div class="wrap" id="cardapio">
+  <div class="tools"><input id="q" type="search" placeholder="🔎 O que você está procurando?" aria-label="Pesquisar no cardápio"><div class="chips" id="chips"></div></div>
+  <div class="grid" id="grid"></div>
+</div>
+
+<section class="info"><div class="wrap">
+  <h2>⭐ Avaliações</h2>
+  <p><span class="big" id="nt"></span> <span class="muted" id="na"></span></p>
+  <p class="muted" style="margin:6px 0 12px">Resumo do que os clientes comentam no Google:</p>
+  <div class="rev">
+    <div>“O melhor lanche de Matupá e região.”</div>
+    <div>Clientes elogiam os acompanhamentos.</div>
+    <div>Clientes elogiam a rapidez da entrega.</div>
+    <div>Pelo menos uma avaliação reclamou do atendimento.</div>
+  </div>
+</div></section>
+
+<section class="info"><div class="wrap">
+  <h2>📍 Onde estamos?</h2>
+  <p id="ad" style="margin-bottom:12px"></p>
+  <a class="btn y" id="maps" target="_blank" rel="noopener" href="#">Abrir no Google Maps</a>
+  <h2 style="margin-top:28px">🕐 Horário</h2>
+  <ul id="hrs" style="list-style:none;padding:0"></ul>
+  <div id="soc" style="margin-top:20px;display:flex;gap:8px;flex-wrap:wrap"></div>
+</div></section>
+</main>
+<footer><div class="wrap"><b id="fn"></b> – <span id="fa"></span></div></footer>
+
+<div class="bar" id="bar" hidden><button id="oc" aria-label="Abrir carrinho"><span id="bc"></span><span id="bt"></span></button></div>
+<div class="ov" id="ov" hidden><div class="sheet" id="sh" role="dialog" aria-modal="true"></div></div>
+
+<script>
+/* ===== CONFIGURAÇÃO: edite só aqui ===== */
+var CONFIG={
+  nome:"Papa Tudo Lanches",
+  endereco:"Av. Interpeninsular, Matupá - MT, CEP 78525-000",   /* número do prédio não informado */
+  whatsapp:"5566996826692",          /* só dígitos, 55 + DDD + número. Único lugar a trocar */
+  nota:"4,5", avaliacoes:48,
+  instagram:"", facebook:"",          /* cole o link completo quando existir */
+  horarios:[]                          /* ex.: [["Segunda a sexta","18:00–23:00"],["Sábado","18:00–00:00"]] */
+};
+/* Categorias: [id, emoji, nome] */
+var CATS=[["ham","🍔","Hambúrgueres"],["dog","🌭","Cachorros-quentes"],["porc","🍟","Porções"],["lan","🥪","Lanches"],["combo","🍗","Combos"],["acomp","🧀","Acompanhamentos"],["beb","🥤","Bebidas"],["sob","🍰","Sobremesas"]];
+/* Adicionais reutilizáveis: [nome, preço] */
+var AD={lanche:[["Bacon",4],["Ovo",3],["Queijo extra",4],["Cheddar",4]],porcao:[["Cheddar e bacon",8]]};
+/* Produtos: [id, categoria, emoji, nome, descrição, preço, adicionais(chave de AD ou ""), foto(link ou "")]
+   ATENÇÃO: itens e preços abaixo são EXEMPLOS. Troque pelos reais da Papa Tudo Lanches. */
+var PROD=[
+["h1","ham","🍔","X-Burguer","Pão, hambúrguer, queijo, alface e tomate.",18,"lanche",""],
+["h2","ham","🍔","X-Bacon","Pão, hambúrguer, queijo, bacon, alface e tomate.",24,"lanche",""],
+["h3","ham","🍔","X-Tudo","Hambúrguer, presunto, queijo, ovo, bacon, milho, alface e tomate.",30,"lanche",""],
+["d1","dog","🌭","Cachorro-quente","Pão, salsicha, molho, milho, batata palha.",14,"",""],
+["p1","porc","🍟","Batata frita","Porção crocante para dividir.",22,"porcao",""],
+["l1","lan","🥪","X-Frango","Filé de frango, queijo, alface e tomate.",22,"lanche",""],
+["c1","combo","🍗","Combo X-Tudo + refri","X-Tudo com refrigerante lata.",36,"",""],
+["a1","acomp","🧀","Molho extra","Cheddar, barbecue ou maionese da casa.",4,"",""],
+["b1","beb","🥤","Refrigerante lata","350 ml.",6,"",""],
+["b2","beb","🧃","Suco natural","Sabor do dia.",9,"",""],
+["s1","sob","🍰","Sobremesa do dia","Pergunte pelo sabor.",10,"",""]
+];
+/* ===== CÓDIGO ===== */
+function $(s){return document.querySelector(s)}
+function esc(t){return String(t).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function R(v){return "R$ "+v.toFixed(2).replace(".",",")}
+var P={};PROD.forEach(function(p){P[p[0]]=p});
+var cart=[],cat="all",term="",key="papatudo_cart_v1",ck="papatudo_cliente_v1";
+try{cart=JSON.parse(localStorage.getItem(key)||"[]")||[]}catch(e){cart=[]}
+cart=cart.filter(function(i){return P[i.id]});
+function save(){try{localStorage.setItem(key,JSON.stringify(cart))}catch(e){}}
+function adds(p){return AD[p[6]]||[]}
+function unit(i){var p=P[i.id],t=p[5];(i.ad||[]).forEach(function(x){var a=adds(p)[x];if(a)t+=a[1]});return t}
+function total(){return cart.reduce(function(s,i){return s+unit(i)*i.q},0)}
+function count(){return cart.reduce(function(s,i){return s+i.q},0)}
+function chips(){
+  $("#chips").innerHTML='<button class="chip on" data-c="all">Todos</button>'+CATS.map(function(c){return '<button class="chip" data-c="'+c[0]+'">'+c[1]+" "+c[2]+"</button>"}).join("");
+}
+function menu(){
+  var t=term.toLowerCase(),out=PROD.filter(function(p){return (cat=="all"||p[1]==cat)&&(!t||(p[3]+" "+p[4]).toLowerCase().indexOf(t)>-1)});
+  $("#grid").innerHTML=out.length?out.map(function(p){
+    var st=p[7]?' style="background-image:url('+esc(p[7])+')"':"";
+    return '<div class="card" tabindex="0" role="button" data-p="'+p[0]+'"><div class="ph"'+st+'>'+(p[7]?"":p[2])+'</div><div class="cb"><h3>'+esc(p[3])+'</h3><p>'+esc(p[4])+'</p><div class="pr"><b>'+R(p[5])+'</b><span class="btn sm">Adicionar</span></div></div></div>';
+  }).join(""):'<p class="empty">Nenhum item encontrado. Tente outro nome ou categoria.</p>';
+}
+function upd(){
+  var n=count();$("#bar").hidden=!n;
+  $("#bc").textContent="🛒 Carrinho ("+n+")";$("#bt").textContent=R(total());save();
+}
+function open(h){$("#sh").innerHTML=h;$("#ov").hidden=false;document.body.style.overflow="hidden"}
+function close(){$("#ov").hidden=true;document.body.style.overflow=""}
+function prod(id){
+  var p=P[id],a=adds(p);
+  open('<button class="x" data-x aria-label="Fechar">×</button><div class="ph" style="border-radius:14px;margin-bottom:12px;'+(p[7]?"background-image:url("+esc(p[7])+")":"")+'">'+(p[7]?"":p[2])+'</div><h2>'+esc(p[3])+'</h2><p class="muted">'+esc(p[4])+'</p><p><b style="color:var(--y);font-size:20px">'+R(p[5])+'</b></p>'+
+   (a.length?'<label>Adicionais</label>'+a.map(function(x,k){return '<label class="opt"><span><input type="checkbox" data-a="'+k+'">'+esc(x[0])+'</span><b>+ '+R(x[1])+'</b></label>'}).join(""):"")+
+   '<label for="no">Observação do item</label><input id="no" maxlength="120" placeholder="Ex.: sem cebola">'+
+   '<div class="row"><span>Quantidade</span><div class="qty"><button data-m="-1" aria-label="Diminuir">−</button><b id="mq">1</b><button data-m="1" aria-label="Aumentar">+</button></div></div>'+
+   '<button class="btn y full" data-add="'+id+'" style="margin-top:12px">Adicionar ao carrinho</button>');
+}
+function addItem(id){
+  var ad=[].slice.call(document.querySelectorAll("[data-a]:checked")).map(function(x){return +x.dataset.a}),
+      o=($("#no").value||"").trim(),q=+$("#mq").textContent,k=id+"|"+ad.join(",")+"|"+o,f=cart.filter(function(i){return i.k==k})[0];
+  if(f)f.q+=q;else cart.push({k:k,id:id,q:q,ad:ad,o:o});
+  upd();close();
+}
+function cartView(){
+  if(!cart.length){open('<button class="x" data-x aria-label="Fechar">×</button><h2>Carrinho</h2><p class="empty">Seu carrinho está vazio. Escolha um lanche no cardápio.</p><button class="btn y full" data-x>Ver cardápio</button>');return}
+  open('<button class="x" data-x aria-label="Fechar">×</button><h2>Seu carrinho</h2>'+cart.map(function(i,n){
+    var p=P[i.id],ex=(i.ad||[]).map(function(x){return adds(p)[x][0]}).join(", ");
+    return '<div class="row"><div><b>'+esc(p[3])+'</b><div class="muted" style="font-size:13px">'+R(unit(i))+' cada'+(ex?" · + "+esc(ex):"")+(i.o?" · Obs: "+esc(i.o):"")+'</div></div><div class="qty"><button data-q="'+n+'|-1" aria-label="Diminuir">−</button><b>'+i.q+'</b><button data-q="'+n+'|1" aria-label="Aumentar">+</button><button data-q="'+n+'|del" aria-label="Remover" style="border-color:var(--r)">🗑</button></div></div>';
+  }).join("")+'<div class="tot"><span>Total</span><span>'+R(total())+'</span></div><button class="btn y full" data-go="co">Finalizar pedido</button><button class="btn ghost full" data-x style="margin-top:8px">Continuar comprando</button>');
+}
+function saved(){try{return JSON.parse(localStorage.getItem(ck)||"{}")||{}}catch(e){return{}}}
+function checkout(){
+  var s=saved();
+  open('<button class="x" data-x aria-label="Fechar">×</button><h2>Finalizar pedido</h2>'+
+   '<label for="fn2">Nome</label><input id="fn2" autocomplete="name" value="'+esc(s.n||"")+'">'+
+   '<label for="ft2">Telefone</label><input id="ft2" type="tel" autocomplete="tel" placeholder="(66) 90000-0000" value="'+esc(s.t||"")+'">'+
+   '<label>Tipo de pedido</label><div class="seg"><label><input type="radio" name="tp" value="Entrega" checked><span>🛵 Entrega</span></label><label><input type="radio" name="tp" value="Retirada"><span>🏪 Retirada</span></label></div>'+
+   '<div id="eb"><label for="fe2">Endereço de entrega</label><input id="fe2" autocomplete="street-address" placeholder="Rua, número, bairro" value="'+esc(s.e||"")+'"></div>'+
+   '<label for="fp">Forma de pagamento</label><select id="fp"><option>Pix</option><option>Dinheiro</option><option>Cartão</option></select>'+
+   '<label for="fo">Observações do pedido</label><textarea id="fo" rows="2" maxlength="200"></textarea>'+
+   '<div style="margin-top:14px"><b>Resumo</b>'+cart.map(function(i){return '<div class="row" style="padding:6px 0"><span>'+i.q+'x '+esc(P[i.id][3])+'</span><span>'+R(unit(i)*i.q)+'</span></div>'}).join("")+'<div class="tot"><span>Total</span><span>'+R(total())+'</span></div></div>'+
+   '<p class="err" id="er" role="alert"></p><button class="btn y full" data-send>Enviar pedido pelo WhatsApp</button><button class="btn ghost full" data-go="cart" style="margin-top:8px">Voltar ao carrinho</button>');
+}
+function send(){
+  var n=$("#fn2").value.trim(),t=$("#ft2").value.trim(),tp=document.querySelector("[name=tp]:checked").value,e=$("#fe2").value.trim(),er=$("#er");
+  er.style.color="";
+  if(!n){er.textContent="Informe seu nome.";return}
+  if(t.replace(/\D/g,"").length<10){er.textContent="Informe um telefone com DDD.";return}
+  if(tp=="Entrega"&&!e){er.textContent="Informe o endereço de entrega.";return}
+  try{localStorage.setItem(ck,JSON.stringify({n:n,t:t,e:e}))}catch(x){}
+  var L=cart.map(function(i){var p=P[i.id],ex=(i.ad||[]).map(function(x){return adds(p)[x][0]}).join(", ");
+    return i.q+"x "+p[3]+(ex?" (+ "+ex+")":"")+" — "+R(unit(i)*i.q)+(i.o?"\n   Obs: "+i.o:"")}).join("\n"),o=$("#fo").value.trim();
+  var m="🍔 NOVO PEDIDO — "+CONFIG.nome.toUpperCase()+"\n\n👤 Cliente: "+n+"\n📞 Telefone: "+t+"\n\n📦 Pedido:\n"+L+"\n\n💰 Total: "+R(total())+"\n\n🛵 Tipo: "+tp+(tp=="Entrega"?"\n📍 Endereço: "+e:"")+"\n\n💳 Pagamento: "+$("#fp").value+(o?"\n\n📝 Observação: "+o:"");
+  window.open("https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent(m),"_blank");
+  er.style.color="var(--ok)";er.textContent="WhatsApp aberto. Toque em enviar por lá para confirmar o pedido.";
+}
+document.addEventListener("click",function(ev){
+  var t=ev.target,g=function(a){return t.closest("["+a+"]")},el;
+  if(el=g("data-c")){cat=el.dataset.c;document.querySelectorAll(".chip").forEach(function(c){c.classList.toggle("on",c==el)});menu();return}
+  if(g("data-x")||t.id=="ov"){close();return}
+  if(el=g("data-add")){addItem(el.dataset.add);return}
+  if(el=g("data-m")){var q=$("#mq");q.textContent=Math.max(1,+q.textContent+ +el.dataset.m);return}
+  if(el=g("data-q")){var a=el.dataset.q.split("|"),i=cart[+a[0]];if(a[1]=="del"||i.q+ +a[1]<1)cart.splice(+a[0],1);else i.q+=+a[1];upd();cartView();return}
+  if(el=g("data-go")){el.dataset.go=="co"?checkout():cartView();return}
+  if(g("data-send")){send();return}
+  if(el=g("[data-p]")){prod(el.dataset.p);return}
+  if(t.closest("#oc"))cartView();
+});
+document.addEventListener("keydown",function(e){if(e.key=="Escape")close();if(e.key=="Enter"&&e.target.dataset&&e.target.dataset.p)prod(e.target.dataset.p)});
+$("#q").addEventListener("input",function(e){term=e.target.value.trim();menu()});
+document.addEventListener("change",function(e){if(e.target.name=="tp")$("#eb").style.display=e.target.value=="Entrega"?"":"none"});
+(function(){
+  document.title=CONFIG.nome+" – Cardápio digital | Matupá - MT";
+  $("#lg").textContent=CONFIG.nome;$("#hn").textContent=CONFIG.nome;$("#fn").textContent=CONFIG.nome;
+  $("#hr").textContent="⭐ "+CONFIG.nota+" · "+CONFIG.avaliacoes+" avaliações";
+  $("#nt").textContent=CONFIG.nota+"/5";$("#na").textContent=CONFIG.avaliacoes+" avaliações";
+  $("#ad").textContent=CONFIG.endereco;$("#fa").textContent=CONFIG.endereco;
+  $("#maps").href="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(CONFIG.nome+" "+CONFIG.endereco);
+  $("#hrs").innerHTML=CONFIG.horarios.length?CONFIG.horarios.map(function(h){return '<li class="row"><b>'+esc(h[0])+'</b><span>'+esc(h[1])+'</span></li>'}).join(""):'<li class="muted">Horário de funcionamento ainda não informado. Fale com a gente pelo WhatsApp.</li>';
+  var s="";
+  if(CONFIG.instagram)s+='<a class="btn ghost sm" target="_blank" rel="noopener" href="'+esc(CONFIG.instagram)+'">Instagram</a>';
+  if(CONFIG.facebook)s+='<a class="btn ghost sm" target="_blank" rel="noopener" href="'+esc(CONFIG.facebook)+'">Facebook</a>';
+  $("#soc").innerHTML=s;
+  chips();menu();upd();
+})();
+</script>
+</body>
+</html>
